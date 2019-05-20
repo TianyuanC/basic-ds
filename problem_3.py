@@ -1,3 +1,38 @@
+import math
+
+
+def merge(left, right):
+    left_index = 0
+    right_index = 0
+    result = []
+    while left_index < len(left) or right_index < len(right):
+        if left_index == len(left):
+            result.extend(right[right_index:len(right)])
+            break
+        if right_index == len(right):
+            result.extend(left[left_index:len(left)])
+            break
+
+        if left[left_index] >= right[right_index]:
+            result.append(left[left_index])
+            left_index += 1
+        else:
+            result.append(right[right_index])
+            right_index += 1
+    return result
+
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = math.floor(len(arr)/2)
+    left = arr[0:mid]
+    right = arr[mid: len(arr)]
+    left_sorted = merge_sort(left)
+    right_sorted = merge_sort(right)
+    return merge(left_sorted, right_sorted)
+
+
 def rearrange_digits(input_list):
     """
     Rearrange Array Elements so as to form two number such that their sum is maximum.
@@ -8,11 +43,11 @@ def rearrange_digits(input_list):
        (int),(int): Two maximum sums
     """
     # Sort
-    input_list.sort(reverse=True)
+    sorted_list = merge_sort(input_list)
     # Fill the digits
     first = "0"
     second = "0"
-    for index, digit in enumerate(input_list):
+    for index, digit in enumerate(sorted_list):
         if index % 2 == 0:
             first += str(digit)
         else:
