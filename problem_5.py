@@ -57,19 +57,34 @@ for word in wordList:
     MyTrie.insert(word)
 
 
-def f(prefix):
+def search_display(prefix):
     if prefix != '':
         prefixNode = MyTrie.find(prefix)
         if prefixNode:
-            print('\n'.join(prefixNode.suffixes()))
+            return prefixNode.suffixes()
         else:
-            print(prefix + " not found")
+            return prefix + " not found"
     else:
-        print('')
+        return ""
 
 
-f("w")
-f("t")
-f("tri")
-f("trie")
-f("fun")
+def test_function(test_case):
+    output = search_display(test_case[0])
+    solution = test_case[1]
+    if output == solution:
+        print("Pass")
+    else:
+        print("Fail")
+
+
+# empty or no match cases
+test_function(["", ""])
+test_function(["w", "w not found"])
+test_function(["tt", "tt not found"])
+
+# partial matches
+test_function(["t", ['rie', 'rigger', 'rigonometry', 'ripod']])
+test_function(["ant", ['hology', 'agonist', 'onym']])
+
+# full match
+test_function(["factory", []])
