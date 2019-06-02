@@ -8,13 +8,16 @@ def get_min_max_by_sorting(ints):
     Args:
        ints(list): list of integers containing one or more integers
     """
-    min_value = None
-    max_value = None
+    init_val = None
+    if len(ints) > 0:
+        init_val = ints[0]
+    min_value = init_val
+    max_value = init_val
     for i in ints:
-        if min_value is None or i < min_value:
+        if i < min_value:
             min_value = i
 
-        if max_value is None or i > max_value:
+        if i > max_value:
             max_value = i
 
     return (min_value, max_value)
@@ -31,3 +34,7 @@ print("Pass" if ((0, 9) == get_min_max_by_sorting(l)) else "Fail")
 # duplicated inputs
 print("Pass" if ((1, 3) == get_min_max_by_sorting(
     [3, 3, 1, 1, 1, 1])) else "Fail")
+
+# negative inputs
+print("Pass" if ((-2, 3) == get_min_max_by_sorting(
+    [3, 3, 1, -1, 1, -2])) else "Fail")

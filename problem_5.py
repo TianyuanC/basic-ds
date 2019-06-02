@@ -2,7 +2,6 @@ class TrieNode:
     def __init__(self):
         self.children = {}
         self.is_word = False
-        self.all_suffixes = []
 
     def insert(self, char):
         node = None
@@ -14,17 +13,17 @@ class TrieNode:
         return node
 
     def suffixes(self, suffix=''):
-        self.all_suffixes = []
+        all_suffixes = []
 
         if self.is_word and suffix != "":
-            self.all_suffixes.append(suffix)
+            all_suffixes.append(suffix)
 
         for char, node in self.children.items():
             for sub_suffix in node.suffixes(suffix+char):
-                if sub_suffix not in self.all_suffixes:
-                    self.all_suffixes.append(sub_suffix)
+                if sub_suffix not in all_suffixes:
+                    all_suffixes.append(sub_suffix)
 
-        return self.all_suffixes
+        return all_suffixes
 
 
 class Trie:
