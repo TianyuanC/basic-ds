@@ -5,3 +5,5 @@ In order to sort array with single pass, we need to partition the array with thr
 The goal is to try to keep all 0s to the left by leveraging the `zero_index`, and the same applies to 2s by using the `two_index`.
 
 The whole operation needs to iterate the array elements exactly once, so it is `O(n)`
+
+In terms of the space complexity, we are keeping track of the tree indexed, so it is `O(1)`

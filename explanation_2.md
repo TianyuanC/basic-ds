@@ -5,3 +5,5 @@
 -   After determining the pivot point, we can decide the search range again and giving it's sorted, we can apply binary search again, and that will be `O(logN)`
 
 -   Thus, overall the complexity is `O(logN)`
+
+-   In terms of the space complexity, the storage of upper and lower bound indexes as well as the pivot position holds `O(1)`
